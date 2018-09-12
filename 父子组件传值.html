@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+   <counter  :count="0" @change="handleChange"></counter>
+   <counter  :count="0" @change="handleChange"></counter>
+   <h1>
+       总和：{{total}}
+   </h1>
+</div>
+    <script>
+    Vue.component('counter', {
+        props: ['count'],
+        template: `
+            <p @click="handleClick"> {{ number }} </p>
+        `,
+        data: function(){
+            return {
+                number: this.count,  //子组件不能修改父组件传过来的值，可以将父组件传过来的值先保存在子组件的一个变量中
+                step: 3
+            }
+        },
+        methods: {
+            handleClick: function(){
+                this.number += this.step;
+                this.$emit('change', this.step);
+            }
+        }
+    })
+   var app = new Vue({
+        el: '#app',
+        data: {
+            total: 0
+        },
+        methods: {
+            handleChange: function(num){  //num是子组件传过来的参数，在组件中监听事件时不需要加参数
+                console.log(num);
+                this.total += num;
+            }
+        }
+   });
+    </script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <h1>{{ fullName }}</h1>
+    <h2>{{ age }}</h2>
+</div>
+    <script>
+       var app = new Vue({
+            el: '#app',
+            data: {
+                firstName: 'kally',
+                lastName: 'shao',
+                age: 18
+            },
+            computed: {
+                fullName: {
+                    get: function(){
+                        console.log('计算了一次');
+                        return this.firstName + ' ' + this.lastName
+                    },
+                    set: function(val){
+                        // console.log(val);   //这个val指的是设置fullMsg的值
+                        var arr = val.split(' ');
+                            this.firstName = arr[0];
+                            this.lastName = arr[1];
+                    }
+                }
+            },
+
+       });
+    
+    </script>
+</body>
+</html>

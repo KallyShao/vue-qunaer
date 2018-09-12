@@ -25,11 +25,13 @@ module.exports = {
   },
   // add your custom rules here
   rules: {
+    'comma-dangle': 0,
     // don't require .vue extension when importing
     'import/extensions': ['error', 'always', {
       js: 'never',
       vue: 'never'
     }],
+     'linebreak-style': [0, 'error', 'windows'],
     // disallow reassignment of function parameters
     // disallow parameter object manipulation except for specific exclusions
     'no-param-reassign': ['error', {
