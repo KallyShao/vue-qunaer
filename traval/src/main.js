@@ -1,10 +1,11 @@
 import Vue from 'vue';
 import router from './router';
-import './assets/style/reset.css';
-import './assets/style/border.css';
+import 'style/reset.css';
+import 'style/border.css';
+import 'style/iconfont.css';
 import fastclick from 'fastclick';
 
-import App from './App';
+import Home from './pages/home/Home';
 
 Vue.config.productionTip = false;
 fastclick.attach(document.body);
@@ -13,5 +14,5 @@ fastclick.attach(document.body);
 new Vue({
   el: '#app',
   router,
-  render: h => h(App)
+  render: h => h(Home)
 });
