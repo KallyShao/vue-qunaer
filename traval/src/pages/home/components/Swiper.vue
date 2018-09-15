@@ -28,9 +28,7 @@ export default {
                 imgUrl: 'http://img1.qunarzz.com/piao/fusion/1802/42/7c92b9a381e46402.jpg_640x200_1cdce2a4.jpg'
             }]
     	}
-    },
-	components: {
-	}
+    }
 }
 </script>
 
