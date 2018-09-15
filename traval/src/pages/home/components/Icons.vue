@@ -16,54 +16,15 @@
 <script>
     export default {
         name:  'HomeIcons',
+        props: {
+            iconList: Array
+        },
         data(){
             return {
                 swiperOption: {
                     pagination: '.swiper-pagination',
                     loop: false
-                },
-                iconList: [
-                    {
-                        id: '0002',
-                        imgUrl: 'http://img1.qunarzz.com/piao/fusion/1611/54/ace00878a52d9702.png',
-                        desc: '滑雪动物园动物园动物园动物园动物园'
-                    },
-                    {
-                        id: '0003',
-                        imgUrl: 'http://img1.qunarzz.com/piao/fusion/1611/54/ace00878a52d9702.png',
-                        desc: '动物园'
-                    },
-                    {
-                        id: '0004',
-                        imgUrl: 'http://img1.qunarzz.com/piao/fusion/1611/54/ace00878a52d9702.png',
-                        desc: '景点门票'
-                    },
-                    {
-                        id: '0005',
-                        imgUrl: 'http://img1.qunarzz.com/piao/fusion/1611/54/ace00878a52d9702.png',
-                        desc: '滑雪'
-                    },
-                    {
-                        id: '0006',
-                        imgUrl: 'http://img1.qunarzz.com/piao/fusion/1611/54/ace00878a52d9702.png',
-                        desc: '动物园'
-                    },
-                    {
-                        id: '0007',
-                        imgUrl: 'http://img1.qunarzz.com/piao/fusion/1611/54/ace00878a52d9702.png',
-                        desc: '景点门票'
-                    },
-                    {
-                        id: '0008',
-                        imgUrl: 'http://img1.qunarzz.com/piao/fusion/1611/54/ace00878a52d9702.png',
-                        desc: '滑雪'
-                    },
-                    {
-                        id: '0009',
-                        imgUrl: 'http://img1.qunarzz.com/piao/fusion/1611/54/ace00878a52d9702.png',
-                        desc: '动物园'
-                    },
-                ]
+                }
             }
         },
         computed: {
