@@ -1,9 +1,9 @@
 <template>
     <div>
         <city-header></city-header>
-        <city-search></city-search>
-        <city-list :cities="cities" :hotCities="hotCities"></city-list>
-        <city-alphabet :cities="cities"></city-alphabet>
+        <city-search :cities = "cities"></city-search>
+        <city-list :cities = "cities" :hotCities = "hotCities" :currLetter = "currLetter"></city-list>
+        <city-alphabet :cities = "cities" @currLetterChange = "handleGetCurrLetter"></city-alphabet>
     </div>
 </template>
 
@@ -25,7 +25,8 @@ export default {
     data(){
         return {
             cities: {},
-            hotCities: []
+            hotCities: [],
+            currLetter: ''
         }
     },
     methods: {
@@ -39,6 +40,9 @@ export default {
                 this.cities = res.data.cities;
                 this.hotCities = res.data.hotCities;
             }
+        },
+        handleGetCurrLetter(currLetter){
+            this.currLetter = currLetter;
         }
     },
     mounted(){
