@@ -9,7 +9,8 @@
 		</div>
 	    <router-link to="/city">
 		    <div class="header-right">
-			    	{{ this.city }}
+		    	<span class="current-city">{{ this.currCity }}</span>
+		    	<!-- <span class="current-city">{{ this.doubleCity }}</span> -->
 		    	<span class="iconfont arrow-icon">&#xe64a;</span>
 			</div>
 	    </router-link>
@@ -17,10 +18,12 @@
 </template>
 
 <script>
+	import { mapState, mapGetters } from 'vuex';
     export default {
         name: 'home',
-        props: {
-        	city: String
+        computed: {
+        	...mapState(['currCity']),  //简化state的写法，将state中的对象分别映射出来
+        	// ...mapGetters(['doubleCity'])  //getters的用法
         }
     }
 </script>
@@ -53,7 +56,8 @@
 		padding-left: .2rem
 	.header-right
 		float: right
-		width: 1.24rem
+		min-width: 1.04rem
+		padding: 0 .1rem
 		text-align: center
 		color: #fff
 		.arrow-icon

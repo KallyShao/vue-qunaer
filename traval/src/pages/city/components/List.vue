@@ -5,21 +5,25 @@
                 <div class = "title border-topbottom">当前城市</div>
                 <div class = "button-list">
                     <div class = "button-wrapper">
-                        <div class = "button">北京</div>
+                        <div class = "button">{{ this.currCity }}</div>
                     </div>
                 </div>
             </div>
             <div class = "area">
                 <div class = "title border-topbottom">热门城市</div>
                 <div class = "button-list">
-                    <div class = "button-wrapper" v-for = "city in hotCities" :key = "city.id">
+                    <div class = "button-wrapper" 
+                        v-for = "city in hotCities" 
+                        @click = "handleHotCityClick(city.name)"
+                        :key = "city.id">
                         <div class = "button">{{ city.name }}</div>
                     </div>
                 </div>
             </div>
             <div class = "area" v-for = "(item, key) in cities" :key = "key" :ref = "key">
                 <div class = "title border-topbottom">{{ key }}</div>
-                <div class = "item-list" v-for = "city in item" :key = "city.id">
+                <div class = "item-list" v-for = "city in item" :key = "city.id" 
+                    @click = "handleHotCityClick(city.name)">
                     <div class = "item border-bottom">{{ city.name }}</div>
                 </div>
             </div>
@@ -28,7 +32,8 @@
 </template>
 
 <script>
-import BScroll from 'better-scroll'
+import BScroll from 'better-scroll';
+import { mapState, mapMutations } from 'vuex';
 
 export default {
     name: 'CityList',
@@ -36,6 +41,25 @@ export default {
         hotCities: Array,
         cities: Object,
         currLetter: String
+    },
+    methods: {
+        handleHotCityClick (city){
+            console.log(city);
+            //派发一个changeCity（action）的事件，在store中接收
+            // this.$store.dispatch('changeCity', city); 
+            //直接调用mutaition
+
+            // this.$store.commit('changeCity', city);
+            this.changeCity(city);  //使用mapMutations()之后
+            this.$router.push('/'); //跳转到/
+        },
+        ...mapMutations(['changeCity'])
+    },
+    computed: {
+        //mapState()的参数可以是数组，也可以是对象
+        ...mapState({
+            currCity: 'currCity'  
+        })
     },
     mounted (){
         this.scroll = new BScroll(this.$refs.wrapper)
