@@ -3,7 +3,9 @@
         <router-link tag="div" to="/" class="header-abs" v-show="showAbs">
             <div class="iconfont header-abs-back">&#xe624;</div>
         </router-link>
-        <div class="header-fixed" v-show="!showAbs">
+        <div class="header-fixed" 
+            v-show="!showAbs"
+            :style="opacityStyle">
             <router-link to="/">
                 <div class="iconfont header-fixed-back">&#xe624;</div>
             </router-link>
@@ -17,8 +19,30 @@ export default {
     name: 'DetailHeader',
     data (){
         return {
-            showAbs: false
+            showAbs: true,
+            opacityStyle: {
+                opacity: 0
+            }
         }
+    },
+    methods: {
+        handleScroll (){
+            const scrollTop = document.documentElement.scrollTop;
+            if (scrollTop >= 60){
+                let opacity = scrollTop / 160;
+                    opacity = opacity > 1 ? 1 : opacity;
+                this.opacityStyle = { opacity };
+                this.showAbs = false;
+            }else{
+                this.showAbs =  true;
+            }
+        }
+    },
+    activated (){   //该生命周期只有在使用了<keep-alive>标签时才起作用。在页面即将被展示时执行
+        window.addEventListener('scroll', this.handleScroll);
+    },
+    deactivated (){  //即将离开页面时执行
+        window.removeEventListener('scroll', this.handleScroll)
     }
   
 }
@@ -40,6 +64,7 @@ export default {
         color: #fff
         font-size: .4rem
 .header-fixed
+    z-index: 2
     position: fixed
     top: 0
     left: 0
